@@ -15,11 +15,13 @@
 </head>
 
 <body>
-    <div class="container">
-        <div id="movie-carousel" class="carousel">
+    <div class="container-fluid">
+        <div id="movie-carousel" class="carousel slide">
             <h2>Top Movies</h2>
-            <div class="movie-collection carousel-inner"></div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#movie-carousel" data-bs-slide="prev">
+            <div class="movie-collection carousel-inner">
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#movie-carousel" data-bs-slide="prev"
+                style="display: none;">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
@@ -28,11 +30,11 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-
-        <div id="tv-carousel" class="carousel">
+        <div id="tv-carousel" class="carousel slide">
             <h2>Top TV Shows</h2>
             <div class="tv-collection carousel-inner"></div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#tv-carousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#tv-carousel" data-bs-slide="prev"
+                style="display: none;">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
