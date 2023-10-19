@@ -117,5 +117,7 @@ $(window).on('resize', function () {
         tvSlideWidth = tvCarouselContainer.find(".carousel-item").first().outerWidth(true);
         tvScrollPosition = Math.round(tvCarouselContainer.scrollLeft() / tvSlideWidth) * tvSlideWidth;
         tvCarouselContainer.stop().animate({ scrollLeft: tvScrollPosition }, 1000);
+    } else {
+        $("#movie-carousel, #tv-carousel").addClass("slide");
     }
 });
