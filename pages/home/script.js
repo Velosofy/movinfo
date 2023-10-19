@@ -1,4 +1,4 @@
-import { createCard, api_key } from '../../helper.js';
+import { api_key, createCardWithCarousel } from '../../helper.js';
 
 var movieCarouselContainer;
 var movieSlideWidth;
@@ -12,7 +12,7 @@ fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}`)
     .then(response => response.json())
     .then(data => {
         data.results.slice(0, 10).forEach((movie, index) => {
-            $('.movie-collection').append(createCard(movie, index));
+            $('.movie-collection').append(createCardWithCarousel(movie, index));
         })
     })
     .then(() => {
@@ -25,7 +25,7 @@ fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null
     .then(response => response.json())
     .then(data => {
         data.results.slice(0, 10).forEach((tv, index) => {
-            $('.tv-collection').append(createCard(tv, index));
+            $('.tv-collection').append(createCardWithCarousel(tv, index));
         });
     })
     .then(() => {
