@@ -1,4 +1,4 @@
-const api_key = '6a8bc9c90e6aefc939e86ed670e5c1b8';
+import { createCard, api_key } from '../../helper.js';
 
 var movieCarouselContainer;
 var movieSlideWidth;
@@ -8,22 +8,11 @@ var tvCarouselContainer;
 var tvSlideWidth;
 let tvScrollPosition = 0;
 
-function createCard(media, index) {
-    return `
-<div class="carousel-item${index === 0 ? ' active' : ''}">
-    <div class="card">
-        <img class="movie-image img-fluid" src="https://image.tmdb.org/t/p/original${media.poster_path}" alt="${media.title}">
-    </div>
-</div>
-`
-};
-
 fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}`)
     .then(response => response.json())
     .then(data => {
-        const moviesDiv = $('.movie-collection');
         data.results.slice(0, 10).forEach((movie, index) => {
-            moviesDiv.append(createCard(movie, index));
+            $('.movie-collection').append(createCard(movie, index));
         })
     })
     .then(() => {
@@ -35,9 +24,8 @@ fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}`)
 fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=500&with_original_language=en&api_key=${api_key}`)
     .then(response => response.json())
     .then(data => {
-        const tvsDiv = $('.tv-collection');
         data.results.slice(0, 10).forEach((tv, index) => {
-            tvsDiv.append(createCard(tv, index));
+            $('.tv-collection').append(createCard(tv, index));
         });
     })
     .then(() => {

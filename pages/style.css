@@ -44,3 +44,7 @@
   overflow: hidden;
   box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.4);
 }
+
+.search-form {
+  margin-top: 50px
+}
