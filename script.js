@@ -8,27 +8,23 @@ var tvCarouselContainer;
 var tvSlideWidth;
 let tvScrollPosition = 0;
 
+function createCard(media, index) {
+    return `
+<div class="carousel-item${index === 0 ? ' active' : ''}">
+    <div class="card">
+        <img class="movie-image img-fluid" src="https://image.tmdb.org/t/p/original${media.poster_path}" alt="${media.title}">
+    </div>
+</div>
+`
+};
+
 fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}`)
     .then(response => response.json())
     .then(data => {
         const moviesDiv = $('.movie-collection');
         data.results.slice(0, 10).forEach((movie, index) => {
-            const movieCarousel = $('<div>').attr({
-                class: 'carousel-item' + (index === 0 ? ' active' : '')
-            });
-            const movieDiv = $('<div>').attr({
-                class: 'card'
-            });
-            const poster = $('<img>').attr({
-                class: 'movie-image img-fluid',
-                src: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
-                alt: movie.title
-            });
-
-            movieDiv.append(poster);
-            movieCarousel.append(movieDiv);
-            moviesDiv.append(movieCarousel);
-        });
+            moviesDiv.append(createCard(movie, index));
+        })
     })
     .then(() => {
         movieCarouselContainer = $("#movie-carousel .carousel-inner");
@@ -41,21 +37,7 @@ fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null
     .then(data => {
         const tvsDiv = $('.tv-collection');
         data.results.slice(0, 10).forEach((tv, index) => {
-            const tvCarousel = $('<div>').attr({
-                class: 'carousel-item' + (index === 0 ? ' active' : '')
-            });
-            const tvDiv = $('<div>').attr({
-                class: 'card'
-            });
-            const poster = $('<img>').attr({
-                class: 'tv-image img-fluid',
-                src: `https://image.tmdb.org/t/p/original${tv.poster_path}`,
-                alt: tv.title
-            });
-
-            tvDiv.append(poster);
-            tvCarousel.append(tvDiv);
-            tvsDiv.append(tvCarousel);
+            tvsDiv.append(createCard(tv, index));
         });
     })
     .then(() => {
