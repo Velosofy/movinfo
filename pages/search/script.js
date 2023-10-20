@@ -49,6 +49,11 @@ $(() => {
                     return;
             }
 
+            if (data.total_results === 0) {
+                row.append('<h1 class="text-center">No result found</h1>');
+                return;
+            }
+
             data.results.forEach(result => {
                 const col = $('<div class="col-sm-4 col-md-3 col-lg-2 my-2"></div>');
                 const card = createCard(result, ImageSize.SMALL);
