@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-expand-md bg-body-tertiary">
+    <nav class="navbar sticky-top navbar-expand-sm bg-body-tertiary">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -23,7 +23,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                     <li class="nav-item">
                         <a class="nav-link" href="../home/index.html">Home</a>
                     </li>
@@ -39,16 +39,21 @@
     </nav>
 
     <div class="container-fluid">
-        <div class="d-flex my-4" role="search">
-            <input class="search-input form-control w-25 me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="search-btn btn btn-outline-success" type="submit">Search</button>
+        <div class="d-sm-flex my-4" role="search">
+            <select class="search-type form-select w-auto me-sm-2 my-2" aria-label="Search Type">
+                <option selected value="none">Search Type</option>
+                <option value="movie">Movies</option>
+                <option value="tv">TV Shows</option>
+            </select>
+            <input class="search-input form-control w-auto me-sm-2 my-2" type="search" placeholder="Search"
+                aria-label="Search" disabled="disabled">
+            <button class="d-flex search-btn btn btn-outline-success my-2" type="submit">Search</button>
         </div>
 
         <div class="search-result">
 
         </div>
     </div>
-
 </body>
 
 </html>
