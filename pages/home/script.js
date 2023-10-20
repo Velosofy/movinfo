@@ -1,4 +1,4 @@
-import { createCardWithCarousel } from '../../utils/helper.js';
+import { ImageSize, createCardWithCarousel } from '../../utils/helper.js';
 import { getMovieDiscover, getTVDiscover } from '../../utils/tmdb.js';
 
 const movieCarouselContainer = $("#movie-carousel .carousel-inner");
@@ -10,13 +10,13 @@ var tvScrollPosition = 0;
 
 await getMovieDiscover().then(data => {
     data.results.slice(0, 10).forEach((movie, index) => {
-        $('.movie-collection').append(createCardWithCarousel(movie, index));
+        $('.movie-collection').append(createCardWithCarousel(movie, index, ImageSize.SMALL));
     })
 });
 
 await getTVDiscover().then(data => {
     data.results.slice(0, 10).forEach((tv, index) => {
-        $('.tv-collection').append(createCardWithCarousel(tv, index));
+        $('.tv-collection').append(createCardWithCarousel(tv, index, ImageSize.SMALL));
     });
 });
 
