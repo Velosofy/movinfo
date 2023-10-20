@@ -17,4 +17,3 @@ export function createCard(media) {
 </div>
 `
 };
-

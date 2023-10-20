@@ -1,41 +1,28 @@
-import { api_key, createCardWithCarousel } from '../../helper.js';
+import { createCardWithCarousel } from '../../utils/helper.js';
+import { getMovieDiscover, getTVDiscover } from '../../utils/tmdb.js';
 
-var movieCarouselContainer;
-var movieSlideWidth;
-let movieScrollPosition = 0;
-
-var tvCarouselContainer;
-var tvSlideWidth;
-let tvScrollPosition = 0;
-
-fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}`)
-    .then(response => response.json())
-    .then(data => {
-        data.results.slice(0, 10).forEach((movie, index) => {
-            $('.movie-collection').append(createCardWithCarousel(movie, index));
-        })
+await getMovieDiscover().then(data => {
+    data.results.slice(0, 10).forEach((movie, index) => {
+        $('.movie-collection').append(createCardWithCarousel(movie, index));
     })
-    .then(() => {
-        movieCarouselContainer = $("#movie-carousel .carousel-inner");
-        movieSlideWidth = movieCarouselContainer.find(".carousel-item").first().outerWidth(true);
-    })
-    .catch(err => console.error(err));
+});
 
-fetch(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&vote_count.gte=500&with_original_language=en&api_key=${api_key}`)
-    .then(response => response.json())
-    .then(data => {
-        data.results.slice(0, 10).forEach((tv, index) => {
-            $('.tv-collection').append(createCardWithCarousel(tv, index));
-        });
-    })
-    .then(() => {
-        tvCarouselContainer = $("#tv-carousel .carousel-inner");
-        tvSlideWidth = tvCarouselContainer.find(".carousel-item").first().outerWidth(true);
-    })
-    .catch(err => console.error(err));
+await getTVDiscover().then(data => {
+    data.results.slice(0, 10).forEach((tv, index) => {
+        $('.tv-collection').append(createCardWithCarousel(tv, index));
+    });
+});
 
 
-$(document).ready(function () {
+
+$(() => {
+    const movieCarouselContainer = $("#movie-carousel .carousel-inner");
+    var movieSlideWidth = movieCarouselContainer.find(".carousel-item").first().outerWidth(true);
+    var movieScrollPosition = 0;
+    const tvCarouselContainer = $("#tv-carousel .carousel-inner");
+    var tvSlideWidth = tvCarouselContainer.find(".carousel-item").first().outerWidth(true);
+    var tvScrollPosition = 0;
+
     if ($(window).width() >= 768) {
         $("#movie-carousel, #tv-carousel").removeClass("slide");
     }

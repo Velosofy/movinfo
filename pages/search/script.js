@@ -1,33 +1,5 @@
-import { api_key, createCard } from '../../helper.js';
-
-async function getMovieData(query) {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${query}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-}
-
-async function getMovieDetails(movie_id) {
-    const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${api_key}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-}
-
-async function getTVData(query) {
-    const url = `https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${query}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-}
-
-async function getTVDetails(tv_id) {
-    const url = `https://api.themoviedb.org/3/tv/${tv_id}?api_key=${api_key}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-}
-
+import { createCard } from '../../utils/helper.js';
+import { getMovieData, getTVData } from '../../utils/tmdb.js';
 
 $(() => {
     var search_type = 'none';
