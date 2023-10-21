@@ -42,5 +42,15 @@
   border: none;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+.card-body>h5 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.card-tagline {
+  font-size: 13px;
+  color: #aaaaaa;
 }

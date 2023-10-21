@@ -43,7 +43,7 @@ $(() => {
         const data = await searchData(query, search_type);
 
         if (data.total_results === 0) {
-            row.append('<h1 class="text-center">No result found</h1>');
+            row.append('<h1>No result found</h1>');
             return;
         }
 
