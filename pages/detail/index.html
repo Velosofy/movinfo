@@ -34,9 +34,15 @@
 
     <div class="container-fluid">
         <div class="d-sm-flex my-4" role="search">
-            <input class="search-input form-control w-auto me-sm-2 my-2" type="search" placeholder="Enter TMDB ID"
-                aria-label="Search">
-            <button class="d-flex search-btn btn btn-outline-success my-2" type="submit">Search</button>
+            <select class="search-type form-select w-auto me-sm-2 my-2" aria-label="Search Type">
+                <option selected value="none">Search Type</option>
+                <option value="Movie">Movies</option>
+                <option value="TV">TV Shows</option>
+            </select>
+            <input class="search-input form-control w-auto me-sm-2 my-2" type="search" aria-label="Search"
+                placeholder="Select search type" disabled="disabled">
+            <button class="d-flex search-btn btn btn-outline-success my-2" type="submit"
+                disabled="disabled">Search</button>
         </div>
         <div class="detail-container">
 

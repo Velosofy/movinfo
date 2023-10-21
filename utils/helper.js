@@ -11,19 +11,21 @@ export const ImageSize = {
     },
 };
 
-export function createCardWithCarousel(media, index, ImageSize) {
+export function createCardWithCarousel(media, type, index, ImageSize) {
     return `
 <div class="carousel-item${index === 0 ? ' active' : ''}">
-    ${createCard(media, ImageSize)}
+    ${createCard(media, type, ImageSize)}
 </div>
 `
 };
 
-export function createCard(media, ImageSize) {
+export function createCard(media, type, ImageSize) {
     return `
-<div class="card">
-    <img class="card-img img-fluid" src="${ImageSize.baseUrl}${media.poster_path}" alt="${media.title}">
-</div>
+<a href="../detail/index.html?type=${type}&id=${media.id}">
+    <div class="card">
+        <img class="card-img img-fluid" src="${ImageSize.baseUrl}${media.poster_path}" alt="${media.title}">
+    </div>
+</a>
 `
 };
 
@@ -36,7 +38,7 @@ function getAirDate(data) {
 }
 
 export function createDetailCardMovie(data, reviews) {
-    const review = reviews.total_results > 0 ? reviews.results[Math.floor(Math.random() * reviews.total_results)] : null; console.log(reviews.total_results);
+    const review = reviews.total_results > 0 ? reviews.results[Math.floor(Math.random() * reviews.total_results)] : null;
     return `
 <div class="card my-2">
     <div class="row g-0">
@@ -103,7 +105,7 @@ export function createDetailCardMovie(data, reviews) {
 export function createDetailCardTV(data, reviews) {
     const review = reviews.total_results > 0 ? reviews.results[Math.floor(Math.random() * reviews.total_results)] : null; console.log(reviews.total_results);
     return `
-    <div class="card my-2">
+<div class="card my-2">
     <div class="row g-0">
         <div class="col-lg-4">
             <img src=https://image.tmdb.org/t/p/original${data.poster_path}

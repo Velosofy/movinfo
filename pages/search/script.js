@@ -3,9 +3,9 @@ import { getMovieData, getTVData } from '../../utils/tmdb.js';
 
 $(() => {
     const searchData = async (query, search_type) => {
-        if (search_type === 'movie') {
+        if (search_type === 'Movie') {
             return await getMovieData(query);
-        } else if (search_type === 'tv') {
+        } else if (search_type === 'TV') {
             return await getTVData(query);
         }
     };
@@ -14,15 +14,14 @@ $(() => {
     $('.search-type').on('change', () => {
         search_type = $('.search-type').val();
         if (search_type === 'none') {
+            $('.search-input').attr('placeholder', 'Select search type');
             $('.search-btn').attr('disabled', true);
             $('.search-input').attr('disabled', true);
             return;
         }
         $('.search-input').attr('disabled', false);
         $('.search-btn').attr('disabled', false);
-
-        const input = $('.search-input');
-        input.attr('placeholder', `Search ${search_type}...`);
+        $('.search-input').attr('placeholder', `Input ${search_type} title`);
     });
 
     $('.search-input').on('keydown', (event) => {
@@ -49,7 +48,7 @@ $(() => {
 
         data.results.forEach(result => {
             const col = $('<div class="col-sm-4 col-md-3 col-lg-2 my-2"></div>');
-            const card = createCard(result, ImageSize.SMALL);
+            const card = createCard(result, search_type, ImageSize.SMALL);
             col.append(card);
             row.append(col);
         });

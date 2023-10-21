@@ -10,14 +10,14 @@ var tvScrollPosition = 0;
 
 await getMovieDiscover().then(data => {
     data.results.slice(0, 10).forEach((movie, index) => {
-        $('.movie-collection').append(createCardWithCarousel(movie, index, ImageSize.SMALL));
+        $('.movie-collection').append(createCardWithCarousel(movie, 'Movie', index, ImageSize.SMALL));
         movieSlideWidth = movieCarouselContainer.find(".carousel-item").first().outerWidth(true);
     })
 });
 
 await getTVDiscover().then(data => {
     data.results.slice(0, 10).forEach((tv, index) => {
-        $('.tv-collection').append(createCardWithCarousel(tv, index, ImageSize.SMALL));
+        $('.tv-collection').append(createCardWithCarousel(tv, 'TV', index, ImageSize.SMALL));
         tvSlideWidth = tvCarouselContainer.find(".carousel-item").first().outerWidth(true);
     });
 });
