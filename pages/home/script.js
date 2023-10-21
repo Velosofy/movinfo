@@ -2,21 +2,23 @@ import { ImageSize, createCardWithCarousel } from '../../utils/helper.js';
 import { getMovieDiscover, getTVDiscover } from '../../utils/tmdb.js';
 
 const movieCarouselContainer = $("#movie-carousel .carousel-inner");
-var movieSlideWidth = movieCarouselContainer.find(".carousel-item").first().outerWidth(true);
+var movieSlideWidth;
 var movieScrollPosition = 0;
 const tvCarouselContainer = $("#tv-carousel .carousel-inner");
-var tvSlideWidth = tvCarouselContainer.find(".carousel-item").first().outerWidth(true);
+var tvSlideWidth;
 var tvScrollPosition = 0;
 
 await getMovieDiscover().then(data => {
     data.results.slice(0, 10).forEach((movie, index) => {
-        $('.movie-collection').append(createCardWithCarousel(movie, index, ImageSize.SMALL));
+        $('.movie-collection').append(createCardWithCarousel(movie, 'Movie', index, ImageSize.SMALL));
+        movieSlideWidth = movieCarouselContainer.find(".carousel-item").first().outerWidth(true);
     })
 });
 
 await getTVDiscover().then(data => {
     data.results.slice(0, 10).forEach((tv, index) => {
-        $('.tv-collection').append(createCardWithCarousel(tv, index, ImageSize.SMALL));
+        $('.tv-collection').append(createCardWithCarousel(tv, 'TV', index, ImageSize.SMALL));
+        tvSlideWidth = tvCarouselContainer.find(".carousel-item").first().outerWidth(true);
     });
 });
 
