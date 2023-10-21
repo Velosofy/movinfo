@@ -44,7 +44,7 @@ $(() => {
         }
         $('.search-input').attr('disabled', false);
         $('.search-btn').attr('disabled', false);
-        $('.search-input').attr('placeholder', `Input ${search_type} IMDB ID`);
+        $('.search-input').attr('placeholder', `Input ${search_type} TMDB ID`);
     });
 
     $('.search-btn').on('click', handleSearch);
