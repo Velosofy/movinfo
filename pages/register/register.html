@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Area</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/95541adbcb.js" crossorigin="anonymous"></script>
+    <script src="youtube-api.js"></script>
+    <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+    <div class="mainContainer">
+        <div class="menu-top container-lg d-flex flex-column justify-content-center align-items-center">
+            <div class="w-100 d-flex justify-content-between align-items-center py-2 pe-2 pe-lg-0 position-relative">
+                <div class="welcomeText">MovInfo</div>
+                <a href="../login/login.html"><button class="sign-in">Sign In</button></a>
+            </div>
+            <div class="w-100 d-flex align-items-center position-relative pt-lg-4">
+                <p id="advertisement-text" class="d-none d-lg-block">The Biggest and most comprehensive movie library.
+                    Join us right now.</p>
+                <div class="register-menu">
+                    <p>Sign Up</p>
+                    <form id="register-form" action="../login/login.html">
+                        <div class="input-div one">
+                            <div class="form-item">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Username</h5>
+                                <input type="text" class="input" id="username-input" required>
+                            </div>
+                        </div>
+                        <div class="input-div pass">
+                            <div class="form-item">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Password</h5>
+                                <input type="password" class="input" id="password-input" required>
+                            </div>
+                        </div>
+                        <div class="input-div one">
+                            <div class="form-item">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Full Name</h5>
+                                <input type="text" class="input" id="fullname-input" required>
+                            </div>
+                        </div>
+                        <div class="input-div one">
+                            <div class="form-item">
+                                <i class="fas fa-cake-candles"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Birthday</h5>
+                                <input type="date" class="input date-input" id="birthday-input" required>
+                            </div>
+                        </div>
+                        <div class="input-div one">
+                            <div class="form-item">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Email</h5>
+                                <input type="email" class="input" id="email-input" required>
+                            </div>
+                        </div>
+                        <div class="input-div one">
+                            <div class="form-item">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="div">
+                                <h5>Mobile Number</h5>
+                                <input type="number" class="input" id="number-input" required>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn" value="Sign Up">
+                        <p>Already have an account? <a href="../login/login.html">Login Now</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="carousel-section">
+        <div class="carousel-body container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center position-relative">
+            <div class="iframe-container p-0 p-lg-4">
+                <iframe src="" id="youtubeVideo"></iframe>
+            </div>
+            <div class="carousel-text d-flex flex-column align-items-center align-items-lg-start">
+                <p>Gain information about movies you like and build your playlist.</p>
+                <p>Read movie synopsis, cast, reviews and build your movie playlist.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let inputs = document.querySelectorAll(".input");
+
+        function addFocus() {
+            let parent = this.parentNode.parentNode;
+            parent.classList.add("focus");
+        }
+
+        function removeFocus() {
+            let parent = this.parentNode.parentNode;
+            if (this.value == "") {
+                parent.classList.remove("focus");
+            }
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener("focus", addFocus);
+            input.addEventListener("blur", removeFocus);
+        });
+    </script>
+    <script src="register.js"></script>
+</body>
+
+</html>
