@@ -1,0 +1,154 @@
+footer {
+    background-color: #151515;
+    padding: 4% 12%;
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav li {
+    margin: 8px 0;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer-copyright {
+    font-size: 12px;
+    color: #e5e5e5;
+    letter-spacing: 2px;
+}
+
+.main-container {
+    margin: 2% 20%;
+}
+
+.page-title {
+    margin-bottom: 36px;
+    font-weight: bold;
+}
+
+.sub-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Profile */
+
+#navbar-profile-picture {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.profile-side {
+    margin-right: 8rem;
+}
+
+#user-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.profile-label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.profile-data {
+    font-size: 18px;
+    margin: 2px 0 20px 0;
+}
+
+/* Favorite Movie */
+
+.movie-card {
+    margin: 2%;
+    max-width: 200px;
+    background-color: #f5f3f3;
+    border-radius: 8px;
+    transition: 0.2s all ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.2);
+}
+
+.movie-details {
+    padding: 2px 10px 10px 10px;
+}
+
+.movie-details-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movie-title {
+    font-weight: 500;
+    margin-top: 10px;
+    height: 56px;
+}
+
+.movie-banner {
+    max-width: 100%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.rating-icon {
+    width: 16px;
+}
+
+.movie-rating {
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.movie-details .favorite-icon {
+    cursor: pointer;
+    width: 20px;
+}
+
+@media screen and (max-width: 480px) {
+    .page-title {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    #user-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main-container {
+        margin: 20px 10px;
+    }
+
+    .profile-side {
+        margin: 0 0 20px 0;
+        text-align: center;
+    }
+
+    .content-profile {
+        flex-direction: column;
+    }
+}
