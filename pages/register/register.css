@@ -1,0 +1,361 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.mainContainer {
+    width: 100%;
+    height: 55rem;
+    position: relative;
+}
+
+.mainContainer::before {
+    content: "";
+    background-image: url('../images/netflix-background.jpg');
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    filter: brightness(50%);
+    z-index: 0;
+}
+
+.carousel-section {
+    width: 100%;
+    height: 45rem;
+    background: rebeccapurple;
+    font-family: 'Poppins', sans-serif;
+    border-top: 10px solid #121211;
+    position: relative;
+    padding: 8rem 0;
+}
+
+.carousel-section::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    filter: brightness(40%);
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    animation-name: background;
+    animation-duration: 12s;
+    animation-direction: normal;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes background {
+    0% {
+        background-image: url('../images/captainamerica.jpg');
+    }
+
+    25% {
+        background-image: url('../images/iron-man.jpg');
+    }
+
+    50% {
+        background-image: url('../images/thor.jpg');
+    }
+
+    75% {
+        background-image: url('../images/hulk.jpg');
+    }
+
+    100% {
+        background-image: url('../images/captainamerica.jpg');
+    }
+}
+
+.welcomeText {
+    font-size: 2.5em;
+    font-weight: 800;
+    background: -webkit-linear-gradient(135deg, #e32b44, #6c0a33, #e32b44);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sign-in {
+    display: block;
+    width: 6em;
+    height: 50px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(to right, #e32b44, #6c0a33, #e32b44);
+    background-size: 200%;
+    font-size: 1.2rem;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.sign-in:hover {
+    background-position: right;
+}
+
+#advertisement-text {
+    width: 50%;
+    color: #fff;
+    font-size: 3em;
+    font-weight: 700;
+}
+
+.register-menu {
+    height: 100%;
+    width: 50%;
+    background: rgb(17, 17, 17, 0.5);
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.register-menu p {
+    color: #fff;
+    font-size: 2em;
+}
+
+#register-form {
+    margin: 1rem 0;
+}
+
+.input-div {
+    position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 20px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+.input-div.one {
+    margin-top: 0;
+}
+
+.form-item {
+    color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-item i {
+    transition: .3s;
+}
+
+.input-div>div {
+    position: relative;
+    height: 40px;
+}
+
+.input-div>div>h5 {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 16px;
+    transition: .3s;
+}
+
+.input-div:before,
+.input-div:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background-color: #e32b44;
+    transition: .4s;
+}
+
+.input-div:before {
+    right: 50%;
+}
+
+.input-div:after {
+    left: 50%;
+}
+
+.input-div.focus:before,
+.input-div.focus:after {
+    width: 50%;
+}
+
+.input-div.focus>div>h5 {
+    top: -5px;
+    font-size: 15px;
+}
+
+.input-div.focus>.form-item>i {
+    color: #e32b44;
+}
+
+.input-div>div>input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0.5rem 0.7rem;
+    font-size: 1rem;
+    color: #fff;
+    font-family: 'poppins', sans-serif;
+}
+
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+
+input[type=date]:focus::-webkit-datetime-edit {
+    color: white !important;
+}
+
+input::-webkit-calendar-picker-indicator {
+    color: rgba(255, 255, 255, 1);
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(to right, #e32b44, #6c0a33, #e32b44);
+    background-size: 200%;
+    font-size: 1.2rem;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: .5s;
+    margin-top: 3rem;
+}
+
+.btn:hover {
+    background-position: right;
+}
+
+#register-form p {
+    color: #fff;
+    font-size: 1.1em;
+}
+
+#register-form p>a {
+    text-decoration: none;
+    color: #e32b44;
+}
+
+#register-form p>a:hover {
+    color: #6c0a33;
+}
+
+.iframe-container {
+    width: 50%;
+}
+
+#youtubeVideo {
+    width: 100%;
+    height: 25rem;
+    border-radius: 16px;
+}
+
+.carousel-text {
+    width: 50%;
+    color: #fff;
+    font-size: 3em;
+    font-weight: 700;
+}
+
+.carousel-text p:nth-child(2) {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .carousel-section {
+        height: 35rem;
+    }
+
+    .mainContainer {
+        padding-bottom: 2rem;
+        height: 50rem;
+    }
+
+    .welcomeText {
+        font-size: 2em;
+    }
+
+    .sign-in {
+        width: 5em;
+        height: 45px;
+    }
+
+    .menu-top {
+        background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+        position: relative;
+    }
+
+    .register-menu {
+        padding: 1rem 2rem;
+        width: 100%;
+    }
+
+    .carousel-section {
+        padding: 2rem 1rem;
+    }
+
+    .iframe-container {
+        width: 100%;
+        order: 2;
+        margin-bottom: 1.5rem;
+    }
+
+    #youtubeVideo {
+        width: 100%;
+        height: 20rem;
+        border-radius: 24px;
+    }
+
+    .carousel-text {
+        width: 100%;
+        color: #fff;
+        font-size: 1.3em;
+        font-weight: 600;
+        order: 1;
+        margin-bottom: 1rem;
+    }
+
+    .carousel-text p:nth-child(2) {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    #register-form p {
+        color: #fff;
+        font-size: 1em;
+    }
+
+}
