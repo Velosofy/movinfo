@@ -37,8 +37,34 @@ function getAirDate(data) {
     }
 }
 
-export function createDetailCardMovie(data, reviews) {
+const heartClickHandler = () => {
+    const heartImage = document.getElementById("heartImage");
+
+    if (isHeartClicked) {
+        // If the heart is clicked, change the image source to the filled heart image
+        heartImage.src = "../../pages/images/heart-solid.png";
+    } else {
+        // If the heart is not clicked, change the image source to the outline heart image
+        heartImage.src = "../../pages/images/heart-outline.png";
+    }
+
+    // Toggle the heart image state
+    isHeartClicked = !isHeartClicked;
+    console.log(isHeartClicked, "heartClickedState")
+};
+
+export const getHeart = (heartFilled) => {
+    console.log(heartFilled)
+    if (heartFilled) {
+        return `<img id="heartImage" src="../../pages/images/heart-solid.png" width="25" height="25"/>`
+    } else {
+        return `<img id="heartImage" src="../../pages/images/heart-outline.png" width="25" height="25"/>`
+    }
+}
+
+export function createDetailCardMovie(data, reviews, heartFilled) {
     const review = reviews.total_results > 0 ? reviews.results[Math.floor(Math.random() * reviews.total_results)] : null;
+
     return `
 <div class="card my-2">
     <div class="row g-0">
@@ -48,9 +74,18 @@ export function createDetailCardMovie(data, reviews) {
         </div>
         <div class="col-lg-8">
             <div class="card-body">
-                <h3 class="card-title">
-                    ${data.title}
-                </h3>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h3 class="card-title">
+                            ${data.title}
+                        </h3>
+                    </div>
+                    <div>
+                    <div class="heart-container">
+                        ${getHeart(heartFilled)}
+                    </div>
+                    </div>
+                </div>
                 <p class="card-tagline">
                     ${data.tagline}
                 </p>
@@ -102,8 +137,9 @@ export function createDetailCardMovie(data, reviews) {
 `
 }
 
-export function createDetailCardTV(data, reviews) {
+export function createDetailCardTV(data, reviews, heartFilled) {
     const review = reviews.total_results > 0 ? reviews.results[Math.floor(Math.random() * reviews.total_results)] : null; console.log(reviews.total_results);
+
     return `
 <div class="card my-2">
     <div class="row g-0">
@@ -113,9 +149,18 @@ export function createDetailCardTV(data, reviews) {
         </div>
         <div class="col-lg-8">
             <div class="card-body">
-                <h3 class="card-title">
-                    ${data.name}
-                </h3>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h3 class="card-title">
+                            ${data.name}
+                        </h3>
+                    </div>
+                    <div>
+                    <div class="heart-container">
+                        ${getHeart(heartFilled)}
+                    </div>
+                    </div>
+                </div>
                 <p class="card-tagline">
                     ${data.tagline}
                 </p>
@@ -161,6 +206,7 @@ export function createDetailCardTV(data, reviews) {
                     </h6>
                     `}
                 </div>
+                
             </div>
         </div>
     </div>
