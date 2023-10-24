@@ -1,17 +1,3 @@
-const userData = {
-    name: '', 
-    birthday: '12/08/2004',
-    email: 'cindyaurelia@gmail.com',
-    mobileNumber: '08125476389',
-};
-
-const userDatabase = [
-    {
-        userName: 'cindy',
-        userPassword: 'password',
-    },
-];
-
 // Fungsi untuk mengisi elemen-elemen HTML dengan data dinamis
 function fillUserData() {
     document.getElementById('user-name').textContent = userData.name;
@@ -30,7 +16,7 @@ function checkLogin() {
 
     if (user) {
         localStorage.setItem('currentUser', username);
-        userData.name = username; 
+        userData.name = username;
         fillUserData();
 
         // Redirect to homepage
@@ -72,76 +58,89 @@ function logout() {
 $(() => {
     console.log('CALLED')
     const currentUser = localStorage.getItem('currentUser');
+    const dbFavorite = JSON.parse(localStorage.getItem("dbFavorite"));
+
+
     if (currentUser) {
         showLoggedModal();
     }
 
-    // Now let's implement the part for fetching favorite movies
-    const maxTitleLength = 40;
+    const filteredFavorite = dbFavorite.filter((movie) => {
+        return movie.user == currentUser
+    })
 
-    // TODO: fetch favMoviesIds from somewhere (e.g., a database or an API)
-    let favMoviesIds = [575264, 155, 4141, 980489, 346698, 129];
-    let favMovies = [];
+    let favMovieContainer = document.getElementById('favorite-movie-container');
+    filteredFavorite.forEach(movie => {
+        const movieCard = createMovieCard(movie);
+        favMovieContainer.appendChild(movieCard);
+    });
 
-    const fetchPromises = [];
-    const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YThiYzljOTBlNmFlZmM5MzllODZlZDY3MGU1YzFiOCIsInN1YiI6IjYyMzFhY2IwYzNiZmZlMDA0NmNmYjEyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.knnJ5iOi-BUn9qRyVbdZEbpO-UqRIIQolNBPYJ3ilug'; 
+    // // Now let's implement the part for fetching favorite movies
+    // const maxTitleLength = 40;
 
-    for (let i = 0; i < favMoviesIds.length; i++) {
-        const currId = favMoviesIds[i];
-        const detailsURL = `https://api.themoviedb.org/3/movie/${currId}?language=en-US`;
+    // // TODO: fetch favMoviesIds from somewhere (e.g., a database or an API)
+    // let favMoviesIds = [575264, 155, 4141, 980489, 346698, 129];
+    // let favMovies = [];
 
-        const options = {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer ' + apiKey
-            }
-        };
+    // const fetchPromises = [];
+    // const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YThiYzljOTBlNmFlZmM5MzllODZlZDY3MGU1YzFiOCIsInN1YiI6IjYyMzFhY2IwYzNiZmZlMDA0NmNmYjEyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.knnJ5iOi-BUn9qRyVbdZEbpO-UqRIIQolNBPYJ3ilug';
 
-        fetchPromises.push(
-            fetch(detailsURL, options)
-                .then(res => res.json())
-                .then(json => {
-                    let movieTitle = json.original_title;
-                    if (movieTitle.length > maxTitleLength) {
-                        json.original_title = movieTitle.substring(0, maxTitleLength + 1) + '...';
-                    }
+    // for (let i = 0; i < favMoviesIds.length; i++) {
+    //     const currId = favMoviesIds[i];
+    //     const detailsURL = `https://api.themoviedb.org/3/movie/${currId}?language=en-US`;
 
-                    favMovies.push(json);
-                })
-                .catch(err => console.error('Fetch movie details error: ' + err))
-        );
-    }
+    //     const options = {
+    //         method: 'GET',
+    //         headers: {
+    //             accept: 'application/json',
+    //             Authorization: 'Bearer ' + apiKey
+    //         }
+    //     };
 
-    // Wait for all promises to resolve
-    Promise.all(fetchPromises)
-        .then(() => {
-            // You can use the `favMovies` data as needed, for example, displaying it in your profile page
-            let favMovieContainer = document.getElementById('favorite-movie-container');
-            favMovies.forEach(movie => {
-                const movieCard = createMovieCard(movie);
-                favMovieContainer.appendChild(movieCard);
-            });
-        })
-        .catch(err => {
-            console.error('Promise.all error: ' + err);
-        });
+    //     fetchPromises.push(
+    //         fetch(detailsURL, options)
+    //             .then(res => res.json())
+    //             .then(json => {
+    //                 let movieTitle = json.original_title;
+    //                 if (movieTitle.length > maxTitleLength) {
+    //                     json.original_title = movieTitle.substring(0, maxTitleLength + 1) + '...';
+    //                 }
+
+    //                 favMovies.push(json);
+    //             })
+    //             .catch(err => console.error('Fetch movie details error: ' + err))
+    //     );
+    // }
+
+    // // Wait for all promises to resolve
+    // Promise.all(fetchPromises)
+    //     .then(() => {
+    //         // You can use the `favMovies` data as needed, for example, displaying it in your profile page
+    //         let favMovieContainer = document.getElementById('favorite-movie-container');
+    //         favMovies.forEach(movie => {
+    //             const movieCard = createMovieCard(movie);
+    //             favMovieContainer.appendChild(movieCard);
+    //         });
+    //     })
+    //     .catch(err => {
+    //         console.error('Promise.all error: ' + err);
+    //     });
 });
 
 function createMovieCard(movie) {
     const movieCard = document.createElement('div');
     movieCard.classList.add('movie-card');
- 
+
     const moviePoster = document.createElement('img');
     moviePoster.classList.add('movie-banner');
     moviePoster.src = `https://image.tmdb.org/t/p/w342/${movie.poster_path}`;
-    
+
     const movieDetails = document.createElement('div');
     movieDetails.classList.add('movie-details');
 
     const movieTitle = document.createElement('div');
     movieTitle.classList.add('movie-title');
-    movieTitle.textContent = movie.original_title;
+    movieTitle.textContent = movie.title;
 
     const movieDetailsBottom = document.createElement('div');
     movieDetailsBottom.classList.add('movie-details-bottom');
@@ -149,15 +148,15 @@ function createMovieCard(movie) {
     const movieRatingContainer = document.createElement('div');
     movieRatingContainer.classList.add('movie-rating-container');
 
-    const ratingIcon = document.createElement('img');  
+    const ratingIcon = document.createElement('img');
     ratingIcon.classList.add('rating-icon');
     ratingIcon.src = '../images/star.png';
-    
+
     const movieRating = document.createElement('span');
     movieRating.classList.add('movie-rating');
-    movieRating.textContent = movie.vote_average.toFixed(1);
+    movieRating.textContent = movie.vote_average;
 
-    const favoriteIcon = document.createElement('img');  
+    const favoriteIcon = document.createElement('img');
     favoriteIcon.classList.add('favorite-icon');
     favoriteIcon.src = '../images/heart-solid.png';
 
@@ -172,12 +171,35 @@ function createMovieCard(movie) {
 
     movieCard.appendChild(moviePoster);
     movieCard.appendChild(movieDetails);
-    
+
     // Menambahkan properti "favorite" ke objek film
     movie.favorite = true;
 
     // Menambahkan event listener untuk mengubah status favorit saat ikon hati diklik
     favoriteIcon.addEventListener('click', () => {
+        let db = [];
+        try {
+            db = localStorage.getItem("dbFavorite");
+            db = JSON.parse(db);
+
+            const finder = db.some((file) => {
+                return file.user === movie.user && file.id === movie.id
+            })
+
+            const found = finder === true;
+            if (found) {
+                const newArray = db.filter((file) => {
+                    // console.log(file.id !== movie.id)
+                    return file.user === movie.user && file.id !== movie.id
+                })
+
+                localStorage.setItem("dbFavorite", JSON.stringify(newArray));
+            }
+        } catch (e) {
+            db = []
+            console.log(e)
+        }
+
         if (movie.favorite) {
             favoriteIcon.src = '../images/heart-outline.png'; // Mengganti gambar hati menjadi "heart-outline.png"
             setTimeout(() => {
@@ -189,7 +211,17 @@ function createMovieCard(movie) {
             movie.favorite = true;
             favoriteIcon.src = '../images/heart-solid.png'; // Mengganti gambar hati menjadi "heart-solid.png"
         }
-     });
+    });
+
+    moviePoster.addEventListener('click', function () {
+        // Define the URL you want to redirect to
+        const redirectTo = `../detail/index.html?type=${movie.type}&id=${movie.id};` // Replace with your desired URL
+
+        // Perform the redirection
+        window.location.href = redirectTo;
+    });
+
+ 
 
     return movieCard;
 }

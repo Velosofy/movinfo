@@ -3,6 +3,7 @@ import { api_key } from './helper.js';
 export async function getMovieDiscover() {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}`;
     const response = await fetch(url);
+    console.log(response, "DATA REY");
     if (!response.ok) return null;
     const data = await response.json();
     return data;

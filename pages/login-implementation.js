@@ -42,11 +42,13 @@ $(() => {
         dataObject.forEach(function (data) {
             if (CURRENT_USER == data.userName) {
                 document.getElementById('username').innerHTML = data.userName;
-                document.getElementById('password').innerHTML = data.userPassword;
+                // document.getElementById('password').innerHTML = data.userPassword;
                 document.getElementById('nomor').innerHTML = data.userMobileNumber;
                 document.getElementById('fullname').innerHTML = data.userFullName;
+                document.getElementById('birthday').innerHTML = data.userBirthday;
+                document.getElementById('email').innerHTML = data.userEmail;
             }
-        })
+        });
     }
 })
 
